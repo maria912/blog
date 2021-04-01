@@ -17,14 +17,18 @@
         "laravel-mix": "^2.0",
         "lodash": "^4.17.4",
         "popper.js": "^1.12",
-        "vue": "^2.5.7"
+        "vue": "^2.5.7",
+        "vue-vform": "^1.0.4"
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.15.2",
+        "@vue/babel-sugar-v-model": "^1.2.3",
         "admin-lte": "^3.0.0-alpha.2",
+        "laravel-vue-pagination": "^2.1.0",
         "moment": "^2.29.1",
         "sweetalert": "^2.1.2",
-        "sweetalert2": "^10.15.5",
+        "sweetalert2": "^10.15.6",
+        "v-form-builder": "^2.0.1",
         "vform": "^1.0.1",
         "vue-progressbar": "^0.7.5",
         "vue-router": "^3.5.1"

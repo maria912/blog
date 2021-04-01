@@ -1,4 +1,7 @@
 <?php
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,5 +19,14 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+//with this sentense to change the url and refresh it use 
+Route::get('/home', 'HomeController@index')->name('home'); 
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/{any}', 'HomeController@index')->where('any', '.*');
+Route::get('invoice', function () {
+    return view('invoice');
+});
+
+//Auth::routes();
+//use this
+Route::get('{path}', 'HomeController@index')->where('path','.*');

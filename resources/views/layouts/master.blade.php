@@ -1,13 +1,16 @@
 
 <!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="I-UA-Compatible" content="IE=Edge">
-  <title>AdminLTE 3 | Dashboard</title>
+  <title>AdminLTE 3</title>
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <link rel="stylesheet" href="/css/app.css">
-
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper" id="app">
@@ -21,19 +24,16 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
     </ul>
-    <!-- SEARCH FORM -->
-    <form class="form-inline ml-3">
+    <!-- SEARCH FORM 
+    @keyup.enter="searchit" bas akbes enter brou7 benadi el function-->
       <div class="input-group input-group-sm">
-        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+        <input class="form-control form-control-navbar" @keyup="searchit" v-model="search" type="search" placeholder="Search" aria-label="Search">
         <div class="input-group-append">
-          <button class="btn btn-navbar" type="submit">
+          <button class="btn btn-navbar" @click="searchit">
             <i class="fas fa-search"></i>
           </button>
         </div>
-      </div>
-    </form>
-
-   
+      </div>  
   </nav>
   <!-- /.navbar -->
 
@@ -55,6 +55,7 @@
         <div class="info">
           <a href="#" class="d-block">
           {{ Auth::user()->name }}
+          <p>{{ Auth::user()->type }}</p>
           </a>
         </div>
       </div>
@@ -84,6 +85,7 @@
                </p>
             </router-link>
           </li>
+          @can('isAdmin')
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-cog green"></i>
@@ -102,6 +104,8 @@
               
             </ul>
           </li>
+          @endcan
+          @can('isAdmin') <!-- if the user is admin (true) e3mal b developer 6ab3an is admin moujoudeh fe authserviceprovider -->
           <li class="nav-item">
             <router-link to="/Developer" class="nav-link">
             <i class="nav-icon fa fa-cogs"></i>
@@ -110,6 +114,7 @@
                </p>
             </a>
           </li>
+          @endcan
           <li class="nav-item">
             <router-link to="/Profile" class="nav-link">
             <i class="nav-icon fa fa-user orange"></i>
@@ -153,21 +158,24 @@
        <!-- /.control-sidebar -->
 
   <!-- Main Footer -->
-  <footer class="main-footer">
+  <!-- <footer class="main-footer">-->
     <!-- To the right -->
-    <div class="float-right d-none d-sm-inline">
-    Anything you want
-   </div>
+    <!-- <div class="float-right d-none d-sm-inline">-->
+     <!-- Anything you want-->
+    <!--</div>-->
     <!-- Default to the left -->
-   <strong>Copyright &copy; 2014-2020 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
-  </footer>
+    <!-- <strong>Copyright &copy; 2014-2020 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+  </footer> --> 
 </div>
 </div>
 
 <!-- wrapper  -->
-
+@auth
+<script>
+ window.user = @json(auth()->user())
+</script>
+@endauth
 
 <script src="js/app.js"></script>
 </body>
 </html>
-
